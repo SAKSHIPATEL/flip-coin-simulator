@@ -30,9 +30,21 @@ then
 	diff=$(($tailcount-$headcount))
 else
 	echo "no one wins "
+	while [ $diff -lt 2 ]
+	do
+	result=$((RANDOM%2))
+	if [ $result -eq $head ]
+	then
+	((headcount++))
+	else
+	((tailcount++))
+	fi
+	diff=$(($headcount-$tailcount))
+done
 fi
 
 echo "difference is "$diff
 echo "head count is " $headcount
 
 echo "tail count is "$tailcount
+
